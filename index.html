@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html ng-app="scriptsApp">
+	<head>
+				<meta charset = "utf-8">
+
+				<title>Archive Template</title>
+
+				<link rel="stylesheet" href="css/style.css">
+
+				<link rel="icon" href="./assets/favicon.ico">
+				<!-- <link rel="shortcut icon" href="./favicon.png" /> -->
+				<!--[if IE]><link rel="shortcut icon" href="./favicon.png"><![endif]-->
+
+				<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+
+				<script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.12.min.js"></script>
+				<script src="https://code.angularjs.org/1.4.1/angular.min.js"></script>
+				<script src="https://code.angularjs.org/1.4.1/angular-route.min.js"></script>
+				<script src="app/app.js"></script>
+				<script src="app/routes.js"></script>
+				
+				<!-- ADD ANY MODULES HERE -->
+				
+				<script src="app/controllers/countrylistctrl.js"></script>
+				<script src="app/controllers/rootctrl.js"></script>
+				<script src="app/controllers/uploadctrl.js"></script>
+				<script src="app/controllers/listctrl.js"></script>
+
+				<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	
+	</head>
+
+  <body ng-ctrl="MainCtrl">
+  		<header id="ownheader">
+  			<p id="logmessage" class="ko">not logged in!</p>
+  			<div id="navigationmenu">
+				<ul>
+					<li><a href="/#/">HOME</a></li>
+				  	<li><a href="/#/list">LIST</a></li>
+				 	<li><a href="/#/upload">UPLOAD</a></li>
+				 	<li><a href="/#/test">TEST</a></li>
+				</ul>			
+  			</div>
+  		</header>
+		<div ng-view></div>
+  </body>
+</html>

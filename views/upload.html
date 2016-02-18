@@ -1,0 +1,36 @@
+	    <div class="upload">
+
+			<form id="uploadForm" method="get" accept-charset="utf-8" ng-submit="populate()">
+				    <label for="fileLabel">File Label:</label>
+				    <input type="text" ng-model="fileLabel"/>
+				    <label for="fileDescription">File Description:</label>
+				    <input type="text" ng-model="fileDescription"/>
+				    
+				    <label for="fileDate">File Date:</label>
+				    <input type="date" ng-model="fileDate"/>
+					<label for="filetype">FileType:</label>
+					<div class="radio">
+						<ul class="radio">
+							<li class="radio-item1"><input type="radio" name="fileType" ng-model="fileType" value="ebextension" >ebextension</li>
+							<li class="radio-item2"><input type="radio" name="filetype" ng-model="fileType" value="script">script</li>
+							<li class="radio-item3"><input type="radio" name="filetype" ng-model="fileType" value="package">package</li>
+						</ul>
+					</div>
+			    	<label for="fileTags">Tags:</label>
+			    	<input type="text" ng-model="fileTags" />
+					<label for="file-chooser">File To Upload:</label>
+					<input type="file" id="file-chooser" /> 
+					<button id="upload-button">Upload to S3</button>
+					<br>
+					<br>
+					<br>
+					<input type="submit" value="check">
+			</form>
+			
+
+			<div id="results">
+				<br>
+				<p style="font-size: .5em;">{{strigyObj}}</p>
+			</div>
+
+	    </div>

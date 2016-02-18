@@ -1,0 +1,22 @@
+		<div id="searchArea">
+  			<p>Search:</p> 
+  			Tags: <input ng-model="query.tags" type="text" name="searchbox1"/>
+  			Type: <select ng-model="filterItem.files" ng-options="option.name for option in filterOptions.files " name="dropdown">
+  			</select>
+  			
+  		</div>
+	    <table>
+	      <tr>
+	        <th>Label</th>
+	        <th class="download"></th>
+	        <th>Type</th>
+	        <th>Tags</th>
+	      </tr>
+	      <tr ng-repeat="item in entries | filter:query | filter:customFilter">
+	        <td>{{item.label}}</td>
+	        <td class="download"><a href="/{{item.type}}s/{{item.location}}" class="{{item.type}}"></a></td>
+	        <td>{{item.type}}</td>
+	        <!-- <td><a href="{{item.location}}">{{item.label}}</a></td> -->
+	        <td>{{item.tags}}</td>
+	      </tr>
+	    </table>
