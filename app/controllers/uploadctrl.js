@@ -1,52 +1,72 @@
-scriptsApp.controller('UploadCtrl', function ($scope, $http, $routeParams){
-    var fileChooser = document.getElementById('file-chooser');
-    var button = document.getElementById('upload-button');
-    var results = document.getElementById('results');
-    $scope.fileName; 
-    $scope.file;
-    $scope.obj = {};
+(function () {
+    angular
+        .module('app')
+        .controller('UploadCtrl', UploadCtrl);
 
-    // if($scope.file) console.log("FILE IS NOT EMPTY!" + $scope.file);
-    //     else console.log("IT IS EMPTY");
+        UploadCtrl.$inject = ['$scope', '$http', '$routeParams', 'loginFBService'];
 
-    button.addEventListener('click', function() {
-      
-      $scope.file = fileChooser.files[0];
+        function UploadCtrl($scope, $http, $routeParams, loginFBService){
+            
+            var vm = this;
 
-      if ($scope.file) {
-        results.innerHTML = '';
-        //console.log($scope.file.name);
-        $scope.fileName = String($scope.file.name);
-        $scope.populate();
+            var fileChooser = document.getElementById('file-chooser');
+            var button = document.getElementById('upload-button');
+            var results = document.getElementById('results');
+            vm.fileName; 
+            vm.file;
+            vm.obj = {};
 
-        var params = {
-            Key: "test/" + $scope.obj.location, 
-            ContentType: $scope.file.type, 
-            Body: $scope.file
-        };
-        
-        bucket.upload(params, function (err, data) {
-          results.innerHTML = err ? 'ERROR!' + String(err) : 'UPLOADED.';
-        });
-      } else {
-        results.innerHTML = 'Nothing to upload.';
-      }
-    }, false);
+            // if(vm.file) console.log("FILE IS NOT EMPTY!" + vm.file);
+            //     else console.log("IT IS EMPTY");
 
-    
-    $scope.stringyObj = JSON.stringify($scope.obj,null,"    ");
-    $scope.populate = function(){
-        $scope.obj.label = $scope.fileLabel;
-        $scope.obj.description = $scope.fileDescription;
-        $scope.obj.date = $scope.fileDate;
-        $scope.obj.type = $scope.fileType;
-        $scope.obj.tags = $scope.fileTags;
-        if($scope.file){
-            $scope.obj.location = String($scope.fileType+"s/"+$scope.fileName);
-        }
-        console.log(JSON.stringify($scope.obj,null,"    "));
-    };
+            button.addEventListener('click', function() {
+              
+              vm.file = fileChooser.files[0];
+
+              if (vm.file) {
+                results.innerHTML = '';
+                //console.log(vm.file.name);
+                vm.fileName = String(vm.file.name);
+                vm.populate();
+
+                var params = {
+                    Key: "test/" + vm.obj.location, 
+                    ContentType: vm.file.type, 
+                    Body: vm.file
+                };
+                
+                bucket.upload(params, function (err, data) {
+                  results.innerHTML = err ? 'ERROR!' + String(err) : 'UPLOADED.';
+                });
+              } else {
+                results.innerHTML = 'Nothing to upload.';
+              }
+            }, false);
+
+            
+            vm.stringyObj = {}; //JSON.stringify(vm.obj,null,"    ");
+                vm.stringyObj.label = vm.fileLabel;
+                vm.stringyObj.description = vm.fileDescription;
+                vm.stringyObj.date = vm.fileDate;
+                vm.stringyObj.type = vm.fileType;
+                vm.stringyObj.tags = vm.fileTags;
+                if(vm.file){
+                    vm.stringyObj.location = String(vm.fileType+"s/"+vm.fileName);
+                }
+            vm.populate = function(){
+                vm.obj.label = vm.fileLabel;
+                vm.obj.description = vm.fileDescription;
+                vm.obj.date = vm.fileDate;
+                vm.obj.type = vm.fileType;
+                vm.obj.tags = vm.fileTags;
+                if(vm.file){
+                    vm.obj.location = String(vm.fileType+"s/"+vm.fileName);
+                }
+                console.log(JSON.stringify(vm.obj,null,"    "));
+            };
 
 
 
-});
+    }
+
+})();
